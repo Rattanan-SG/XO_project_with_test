@@ -12,39 +12,51 @@ import java.util.HashMap;
  * @author Rei
  */
 public class BoardXO {
-    String[][] board;
-    int p1Score;    
-    int p2Score;
-    int tieScore;
-    int turn;
-    public int getP1Score() {
-        return p1Score;
-                }
-    public int getTurn() {
-        return turn;
-    }
-    
+    private String[][] board;
+    private int p1Score;    
+    private int p2Score;
+    private int tieScore;
+    private int turn;
+     
     public BoardXO(){
+       this.board = createBoard();
        this.p1Score=0;
        this.p2Score=0;
        this.tieScore=0;
        this.turn=0;
     }
-
-    public int getP2Score() {
-        return p2Score;
-    }
-
-    public int getTieScore() {
-        return tieScore;
-    }
-       
     
-    
-    public Object[] getBoard() {
-        return board; 
+    public String[][] createBoard() {
+        String[][] newBoard = new String[3][3];
+        return newBoard;
     }
 
+    public HashMap selectToPlay(String row, String column){
+        HashMap<String,String> playerSelect = new HashMap<>();
+        playerSelect.put("row", row);
+        playerSelect.put("column", column);
+        if(turn % 2 == 0){
+            playerSelect.put("symbol", "x");
+        }else{
+            playerSelect.put("symbol", "o");
+        }
+        return playerSelect;
+    }
+    
+    public boolean checkPositionIsEmpty(HashMap playerSelect){
+        int row = Integer.parseInt((String) playerSelect.get("row"));
+        int column = Integer.parseInt((String) playerSelect.get("column"));
+        Boolean result = false;
+        if(board[row][column] == null){
+            result = true;
+        }
+        return result;
+    }
+    
+    public boolean checkTurnFive(){
+        return (this.turn>=5);
+    }
+    
     public boolean checkColumn(int col,String symbol) {
         int num =col==2?1:col++;
         boolean isWin = false;
@@ -80,45 +92,44 @@ public class BoardXO {
         
     }
 
-    public String[][] createBoard() {
-        String[][] newBoard = new String[3][3];
-        this.board = newBoard;
+    public String[][] getBoard() {
         return board;
-    }
-    
-    public HashMap selectPositionToPlay(String row, String column){
-        HashMap<String,String> playerSelect = new HashMap<>();
-        playerSelect.put("row", row);
-        playerSelect.put("column", column);
-        if(turn % 2 == 0){
-            playerSelect.put("symbol", "x");
-        }else{
-            playerSelect.put("symbol", "o");
-        }
-        
-        return playerSelect;
     }
 
     public void setBoard(String[][] board) {
         this.board = board;
     }
-    
-    public boolean checkTurn(){
-        return (this.turn>=5);
+
+    public int getP1Score() {
+        return p1Score;
     }
-    
-    
-    public boolean boxIsEmpty(HashMap playerSelect){
-        int row = Integer.parseInt((String) playerSelect.get("row"));
-        int column = Integer.parseInt((String) playerSelect.get("column"));
-//        System.out.println("box "+row);
-//        System.out.println("box "+column);
-        Boolean result = false;
-//        System.out.println("borad "+ board[row][column]);
-//        System.out.println(board);
-        if(board[row][column] == null){
-            result = true;
-        }
-        return result;
+
+    public void setP1Score(int p1Score) {
+        this.p1Score = p1Score;
     }
+
+    public int getP2Score() {
+        return p2Score;
+    }
+
+    public void setP2Score(int p2Score) {
+        this.p2Score = p2Score;
+    }
+
+    public int getTieScore() {
+        return tieScore;
+    }
+
+    public void setTieScore(int tieScore) {
+        this.tieScore = tieScore;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+ 
 }

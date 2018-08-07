@@ -65,11 +65,7 @@ public class CheckWinTest {
         
     }
     
-    @Test
-    public void checkTurnIsViable(){
-        BoardXO board = new BoardXO();
-        assertFalse(board.checkTurn());
-    }
+    
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
