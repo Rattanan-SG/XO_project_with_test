@@ -35,6 +35,9 @@ public class BoardXOServlet extends HttpServlet {
         if(session.getAttribute("BoardXO") == null){
             session.setAttribute("BoardXO", new BoardXO());
         }
+        
+        BoardXO board = (BoardXO) session.getAttribute("BoardXO");
+
 
         
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
