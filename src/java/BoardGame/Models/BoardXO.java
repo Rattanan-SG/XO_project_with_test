@@ -54,8 +54,13 @@ public class BoardXO {
         return result;
     }
     
+    public void play(int playAtRow, int playAtColumn, String playSymbol) {
+        board[playAtRow][playAtColumn] = playSymbol;
+        turn++;
+    }
+    
     public boolean checkTurnFive(){
-        return (this.turn>=5);
+        return (this.turn >= 5);
     }
     
     public boolean checkColumn(int col,String symbol) {

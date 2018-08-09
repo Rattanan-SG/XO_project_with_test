@@ -30,19 +30,19 @@
                         <form id="gameForm" method="post" action="BoardXO">
                             <table id="game-board" class="table text-center">
                                 <tr>
-                                    <td id="R1_C1"></td>
-                                    <td id="R1_C2"></td>
-                                    <td id="R1_C3"></td>
+                                    <td id="R1_C1">${BoardXO.board[0][0]}</td>
+                                    <td id="R1_C2">${BoardXO.board[0][1]}</td>
+                                    <td id="R1_C3">${BoardXO.board[0][2]}</td>
                                 </tr>
                                 <tr>
-                                    <td id="R2_C1"></td>
-                                    <td id="R2_C2"></td>
-                                    <td id="R2_C3"></td>
+                                    <td id="R2_C1">${BoardXO.board[1][0]}</td>
+                                    <td id="R2_C2">${BoardXO.board[1][1]}</td>
+                                    <td id="R2_C3">${BoardXO.board[1][2]}</td>
                                 </tr>
                                 <tr>
-                                    <td id="R3_C1"></td>
-                                    <td id="R3_C2"></td>
-                                    <td id="R3_C3"></td>
+                                    <td id="R3_C1">${BoardXO.board[2][0]}</td>
+                                    <td id="R3_C2">${BoardXO.board[2][1]}</td>
+                                    <td id="R3_C3">${BoardXO.board[2][2]}</td>
                                 </tr>
                             </table>
                             <input id="sendPosition" name="position" type="hidden" />
@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col text-center">
                         <h3>Player1 (X) Score</h3>
-                        <h4 id="player1Score" class="mt-3">${BoardXO == null ? 55 : BoardXO.p1Score}</h4>
+                        <h4 id="player1Score" class="mt-3">${BoardXO == null ? 0 : BoardXO.p1Score}</h4>
 
                     </div>
                     <div class="col text-center">

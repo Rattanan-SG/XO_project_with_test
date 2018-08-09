@@ -46,12 +46,47 @@ public class EntityTest {
         String[][] expectBoard = new String [3][3];
         assertArrayEquals(expectBoard, board.getBoard());
     }
-    
+
     @Test
-    public void playerPlayXOCorrect(){
-        String position = "R3_C1";
+    public void checkPlayerPlayAtPosition(){
+        String playerPlayAtPosition = "R3_C1";
+        int expectRow = Integer.parseInt(playerPlayAtPosition.substring(1, 2)) - 1;
+        int expectColumn = Integer.parseInt(playerPlayAtPosition.substring(4)) - 1;
+        int playTurn = 1;
+        String expectSymbol = playTurn % 2 == 0 ? "x" : "o";
         
+        BoardXO board = new BoardXO();
+        board.setTurn(playTurn);
+        HashMap playMap = board.playerPlayAtPosition(playerPlayAtPosition);
+
+        assertEquals(expectRow, playMap.get("row"));
+        assertEquals(expectColumn, playMap.get("column"));
+        assertEquals(expectSymbol, playMap.get("symbol"));
+
     }
     
+    @Test
+    public void checkPlay(){
+        BoardXO board = new BoardXO();
+        int playAtRow = 0;
+        int playAtColumn = 2;
+        int playTurn = 6;
+        String expectSymbol = playTurn % 2 == 0 ? "x" : "o";
+        
+        board.setTurn(playTurn);
+        
+        board.play(playAtRow, playAtColumn, expectSymbol);
+        assertEquals(expectSymbol, board.getBoard()[playAtRow][playAtColumn]);
+        assertEquals(playTurn + 1, board.getTurn());
+    }
     
+    @Test
+    public void checkTurnFive(){
+        BoardXO board = new BoardXO();
+        int playTurn = 5;
+        board.setTurn(playTurn);
+        
+        assertTrue("Turn < 5",board.checkTurnFive());
+
+    }
 }

@@ -8,6 +8,7 @@ package BoardGame.Servlet;
 import BoardGame.Models.BoardXO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +39,18 @@ public class BoardXOServlet extends HttpServlet {
             BoardXO board = (BoardXO) session.getAttribute("BoardXO");
             
             String positionString = request.getParameter("position");
+            HashMap playMap = board.playerPlayAtPosition(positionString);
+            int playAtRow = (Integer)playMap.get("row");
+            int playAtColumn = (Integer)playMap.get("column");
+            String playSymbol = (String)playMap.get("symbol");
+        
+            if(board.checkPositionInBoardIsEmpty(playAtRow, playAtColumn)){
+                board.play(playAtRow, playAtColumn, playSymbol);
+            }
+            
+            if (board.checkTurnFive()) {
+                System.out.println(board.getTurn());
+            }
             
         }
 
