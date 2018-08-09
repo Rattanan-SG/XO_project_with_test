@@ -41,19 +41,16 @@ public class EntityTest {
     }
 
     @Test
-    public void CreateBoard(){
+    public void checkCreateBoard(){
         BoardXO board = new BoardXO();
-        String[][] expBoard = new String [3][3];
-//        assertNotNull(board);
-        assertEquals(expBoard, board.createBoard());
+        String[][] expectBoard = new String [3][3];
+        assertArrayEquals(expectBoard, board.getBoard());
     }
     
-    @Test 
-    public void BoardSetStart(){
-        BoardXO board =new BoardXO();
-        assertEquals(0, board.getP1Score());
-        assertEquals(0,board.getP2Score());
-        assertEquals(0,board.getTieScore());
+    @Test
+    public void playerPlayXOCorrect(){
+        String position = "R3_C1";
+        
     }
     
     

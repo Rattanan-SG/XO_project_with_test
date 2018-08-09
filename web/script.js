@@ -1,31 +1,31 @@
 $(document).ready(function() {
   $('#R1_C1').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R1_C2').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R1_C3').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R2_C1').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R2_C2').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R2_C3').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R3_C1').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R3_C2').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
   $('#R3_C3').click(function() {
-    submitForm(this.id)
-  })
+    submitForm(this.id);
+  });
 
   // let submitForm = position => {
   // $('#sendPosition').val(position)
@@ -37,9 +37,9 @@ $(document).ready(function() {
   //   })
   //   console.log('after')
   // }
-})
+});
 
-submitForm = function(position) {
-  $('#sendPosition').val(position)
-  document.getElementById('gameForm').submit()
+function submitForm(position) {
+  $('#sendPosition').val(position);
+  $('#gameForm').submit();
 }

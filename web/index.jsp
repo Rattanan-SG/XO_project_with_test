@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col text-center">
                         <h3>Player1 (X) Score</h3>
-                        <h4 id="player1Score" class="mt-3">${BoardXO == null ? 0 : BoardXO.p1Score}</h4>
+                        <h4 id="player1Score" class="mt-3">${BoardXO == null ? 55 : BoardXO.p1Score}</h4>
 
                     </div>
                     <div class="col text-center">

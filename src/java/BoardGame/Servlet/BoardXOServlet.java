@@ -34,12 +34,13 @@ public class BoardXOServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(session.getAttribute("BoardXO") == null){
             session.setAttribute("BoardXO", new BoardXO());
+        }else{
+            BoardXO board = (BoardXO) session.getAttribute("BoardXO");
+            
+            String positionString = request.getParameter("position");
+            
         }
-        
-        BoardXO board = (BoardXO) session.getAttribute("BoardXO");
 
-
-        
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 

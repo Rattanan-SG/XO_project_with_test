@@ -31,21 +31,22 @@ public class BoardXO {
         return newBoard;
     }
 
-    public HashMap selectToPlay(String row, String column){
-        HashMap<String,String> playerSelect = new HashMap<>();
-        playerSelect.put("row", row);
-        playerSelect.put("column", column);
+    public HashMap playerPlayAtPosition(String position){
+        HashMap<String,Object> playerPlayMap = new HashMap<>();
+        int rowIndex = Integer.parseInt(position.substring(1, 2)) - 1;
+        int columnIndex = Integer.parseInt(position.substring(4)) - 1;
+        
+        playerPlayMap.put("row", rowIndex);
+        playerPlayMap.put("column", columnIndex);
         if(turn % 2 == 0){
-            playerSelect.put("symbol", "x");
+            playerPlayMap.put("symbol", "x");
         }else{
-            playerSelect.put("symbol", "o");
+            playerPlayMap.put("symbol", "o");
         }
-        return playerSelect;
+        return playerPlayMap;
     }
     
-    public boolean checkPositionIsEmpty(HashMap playerSelect){
-        int row = Integer.parseInt((String) playerSelect.get("row"));
-        int column = Integer.parseInt((String) playerSelect.get("column"));
+    public boolean checkPositionInBoardIsEmpty(int row, int column){
         Boolean result = false;
         if(board[row][column] == null){
             result = true;
