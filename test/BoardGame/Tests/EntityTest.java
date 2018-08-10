@@ -84,9 +84,60 @@ public class EntityTest {
     public void checkTurnFive(){
         BoardXO board = new BoardXO();
         int playTurn = 5;
-        board.setTurn(playTurn);
-        
+        board.setTurn(playTurn);    
         assertTrue("Turn < 5",board.checkTurnFive());
+    }
+    
+    @Test
+    public void winRow(){
+        BoardXO board = new BoardXO();
+        String[][] exBoard = board.getBoard();
+//        for (int i = 0; i < 3; i++) {
+//            exBoard[0][i] = "o";
+//        }
+        exBoard[1][0] = "x";
+        exBoard[1][1] = "x";
+        exBoard[1][2] = "x";
+        
+        int lastRow = 1;
+        String lastSymbol = "x";
+        
+        assertEquals(true, board.checkWinRow(lastRow, lastSymbol));
+    }
+    
+    @Test
+    public void winColumn(){
+        BoardXO board = new BoardXO();
+        String[][] exBoard = board.getBoard();
+//        for (int i = 0; i < 3; i++) {
+//            exBoard[i][0] = "o";
+//        }
+        exBoard[0][0] = "x";
+        exBoard[1][0] = "x";
+        exBoard[2][0] = "x";
+        
+        int lastColumn = 0;
+        String lastSymbol = "x";
+        
+        assertEquals(true, board.checkWinColumn(lastColumn, lastSymbol));
+    }
+    
+    @Test
+    public void winDiagonally(){
+        BoardXO board = new BoardXO();
+        String[][] exBoard = board.getBoard();
+//        for (int i = 0; i < 3; i++) {
+//            exBoard[i][0] = "o";
+//        }
+        exBoard[0][0] = "x";
+        exBoard[1][1] = "x";
+        exBoard[2][2] = "x";
+        exBoard[0][2] = "o";
+        exBoard[2][0] = "o";
+        
 
+        String lastSymbol = "x";
+        
+        assertEquals(true, board.checkWinDiagonally(lastSymbol));
     }
 }

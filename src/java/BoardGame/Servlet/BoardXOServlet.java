@@ -49,7 +49,24 @@ public class BoardXOServlet extends HttpServlet {
             }
             
             if (board.checkTurnFive()) {
-                System.out.println(board.getTurn());
+                boolean isWin = false;
+                if (board.checkWinRow(playAtRow, playSymbol)) {
+                    isWin = true;
+                }else if(board.checkWinColumn(playAtColumn, playSymbol)){
+                    isWin = true;
+                }else if(board.checkWinDiagonally(playSymbol)){
+                    isWin = true;
+                }
+                
+                if(isWin){
+                    board.increaseWinScore();
+                    board.createBoard();
+                    request.setAttribute("message", playSymbol+" win");
+                }else if(board.checkTurnNine()){
+                    board.increaseTieScore();
+                    board.createBoard();
+                    request.setAttribute("message", "Tie");
+                }
             }
             
         }

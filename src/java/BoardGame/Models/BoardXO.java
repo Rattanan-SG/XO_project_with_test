@@ -19,16 +19,16 @@ public class BoardXO {
     private int turn;
      
     public BoardXO(){
-       this.board = createBoard();
+       createBoard();
        this.p1Score=0;
        this.p2Score=0;
        this.tieScore=0;
        this.turn=0;
     }
     
-    public String[][] createBoard() {
+    public void createBoard() {
         String[][] newBoard = new String[3][3];
-        return newBoard;
+        this.board =  newBoard;
     }
 
     public HashMap playerPlayAtPosition(String position){
@@ -63,39 +63,63 @@ public class BoardXO {
         return (this.turn >= 5);
     }
     
-    public boolean checkColumn(int col,String symbol) {
-        int num =col==2?1:col++;
+    public boolean checkTurnNine(){
+        return (this.turn == 9);
+    }
+    
+    public boolean checkWinColumn(int lastPlayAtColumn,String lastPlaySymbol) {
         boolean isWin = false;
-        for(int row=0;row<3;row++){
-            
-            if(board[row][col]==null){
+     
+        for (int i = 0; i < 3; i++) {
+            if(board[i][lastPlayAtColumn] == lastPlaySymbol){
+                isWin = true;
+            }else{
+                isWin = false;
                 break;
             }
-            if((board[0][col].equals(board[1][col]))&& (board[2][col].equals(board[1][col]))&& (board[0][col].equals(board[2][col]))){
+        }
+        return isWin;  
+    }
+    
+    public boolean checkWinRow(int lastPlayAtRow, String lastPlaySymbol) {
+        boolean isWin = false;
+     
+        for (int i = 0; i < 3; i++) {
+            if(board[lastPlayAtRow][i] == lastPlaySymbol){
                 isWin = true;
-            } else {
+            }else{
+                isWin = false;
                 break;
+            }
+        }
+        return isWin;  
+    }
+    
+    public boolean checkWinDiagonally(String lastSymbol) {
+        boolean isWin = false;
+        if (board[1][1] != null && board[1][1] == lastSymbol) {
+            if(board[0][0] == board[1][1] && board[2][2] == board[1][1]){
+                isWin = true;
+            }
+            else if (board[0][2] == board[1][1] && board[2][0] == board[1][1]){
+                isWin = true;
             }
         }
         return isWin;
     }
     
-    public boolean checkRow(int row,String symbol) {
-        int num =row==2?1:row++;
-        boolean isWin = false;
-        for(int col=0;col<3;col++){
-            
-            if(board[row][col]==null){
-                break;
-            }
-            if((board[row][0].equals(board[row][1]))&& (board[row][2].equals(board[row][1]))&& (board[row][0].equals(board[row][2]))){
-                isWin = true;
-            } else {
-                break;
-            }
+    public void increaseWinScore(){
+        if(turn % 2 == 0){
+            p2Score++;
+        }else{
+            p1Score++;
         }
-        return isWin;
-        
+        turn = 0;
+    }
+    
+    public void increaseTieScore(){
+        tieScore++;
+        turn = 0;
     }
 
     public String[][] getBoard() {

@@ -25,7 +25,7 @@
                         <h1 class="text-center">Tic Tac Toe</h1>
                     </div>
                 </div>
-                <div class="row my-5">
+                <div class="row my-4">
                     <div class="col">
                         <form id="gameForm" method="post" action="BoardXO">
                             <table id="game-board" class="table text-center">
@@ -47,6 +47,12 @@
                             </table>
                             <input id="sendPosition" name="position" type="hidden" />
                         </form>
+                    </div>
+                </div>
+                                
+                <div class="row">
+                    <div class="col text-center">
+                        <h2>${message}</h2> 
                     </div>
                 </div>
                 <div class="row">
